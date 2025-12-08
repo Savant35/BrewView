@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoffeeFinder</title>
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
+  <link rel="icon" type="image/x-icon" href="./assets/favicon_io/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon_io/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon_io/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+  <header>
+
+    <span id="logo">
+      <img src="./assets/favicon_io/favicon-32x32.png" alt="Logo">
+      <p id='title'>Coffee Finder</p>
+    </span>
+    <img id='user-icon' src="assets/stock-images/Image2.png" alt="user icon">
+
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="filter-categories">
+
+      <div class="dropdown">
+
+        <span class="filter-button">size
+          <i class="fa-solid fa-angle-right"></i>
+        </span>
+
+        <ul class="size">
+          <li class="filter-item">Small</li>
+          <li class="filter-item">Medium</li>
+          <li class="filter-item">Large</li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+
+        <span class="filter-button">
+          Temperature
+          <i class="fa-solid fa-angle-right"></i>
+        </span>
+
+        <ul class="temp-filter">
+          <li class="filter-item">Hot</li>
+          <li class="filter-item">Cold</li>
+
+        </ul>
+      </div>
+
+
+      <div class="dropdown">
+
+        <span class="filter-button">
+          Roast
+          <i class="fa-solid fa-angle-right"></i>
+        </span>
+
+        <ul class="roast">
+          <li class="filter-item">Light</li>
+          <li class="filter-item">Medium</li>
+          <li class="filter-item">Dark</li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+
+        <span class="filter-button">
+          Bean
+          <i class="fa-solid fa-angle-right"></i>
+        </span>
+
+        <ul class="bean-filter">
+          <li class="filter-item">ARABICA</li>
+          <li class="filter-item">ROBUSTA</li>
+          <li class="filter-item">LIBERICA</li>
+          <li class="filter-item">EXCELSA</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <main>
+
+    <div class="content-container">
+
+      <p id="body-text">Find The best<br> Coffee for you</p>
+
+      <div class="search-bar" id="search-bar">
+        <input type="text" name="" value="" placeholder="Find Your Coffee ...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+
+      <div class="coffee-type" id="coffee-type">
+        <ul>
+          <li class="coffee-type-item active-indicator">All</li>
+          <li class="coffee-type-item">Coffee</li>
+          <li class="coffee-type-item">Espresso Drinks</li>
+          <li class="coffee-type-item">Tea</li>
+          <li class="coffee-type-item">Speciality Drinks</li>
+        </ul>
+      </div>
+
+      <div class="card-container" id="card-container">
+
+
+      </div>
+    </div>
+
+    <div class="pop-up " id="pop-up">
+      <div class="image-container" id="image-container">
+
+        <img src="assets/stock-images/Cappuccino.jpg" alt="">
+        <span class="image-icons">
+          <i class="fa-solid fa-chevron-left" id="close-popup"></i>
+          <i class="fa-regular fa-heart"></i>
+        </span>
+
+        <div class="img-footer">
+
+          <div>
+            <p id="footer-title">Cappuccino</p>
+            <p id="footer-sub">With Oat Milk</p>
+            <span id="footer-rating">
+              <i class="fa-solid fa-star"></i>
+              <p>4.5 (10.00)</p>
+            </span>
+          </div>
+
+          <div class="footer-icons">
+            <span class="coffee-icon">
+              <i class="fa-solid fa-mug-hot"></i>
+              <p>Coffee</p>
+            </span>
+            <span class="milk-icon">
+              <i class="fa-solid fa-cow"></i>
+              <p>Dairy</p>
+            </span>
+            <button type="button" class="roasted-button">
+              Medium Roasted
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="coffee-description">
+        <p class="description-heading">Description: </p>
+        <p class="description-text">
+          A cappuccino is a coffee-based drink made primarily from freshly pulled espresso and velvety
+          steamed milk, topped with a layer of foam. This particular blend is created using medium roasted
+          beans and is customizable with milk alternatives like Oat Milk.
+        </p>
+      </div>
+
+      <div class="size-picker" id="size-picker">
+        <ul>
+          <li class="active-size">Small</li>
+          <li>Medium</li>
+          <li>Large</li>
+        </ul>
+      </div>
+
+      <div class="final-price" id="final-price">
+        <span>
+          <p>Price</p>
+          <p>$ 4.53</p>
+        </span>
+
+        <button type="button">Add to Cart</button>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

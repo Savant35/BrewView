@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+/* --=============================== Base ===================================--*/
+:root {
+  --background-color: rgba(13, 15, 20);
+  --background-color2: rgba(32, 20, 8);
+  --secoundary-color: rgba(36, 41, 48);
+  --text-color: rgba(226, 207, 181);
+  --header-height: 3em;
+
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Sour Gummy", "Zalando Sans", "Comic Neue", sans-serif;
+  overflow: auto;
+}
+
+/* --=============================== Header ===================================--*/
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 25px;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5em;
+}
+
+#user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: .5em;
+  margin-top: 8px;
+  box-shadow: -1px -1px 0px 2px var(--secoundary-color);
+}
+
+
+/* --=============================== Main content===================================--*/
+main {
+  margin-top: var(--header-height);
+  height: calc(100dvh - var(--header-height));
+  overflow-y: hidden;
+}
+
+/*delete later */
+.content-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content-container {
+  padding: 10px;
+}
+
+#body-text {
+  font-size: 1.5em;
+  padding-left: 5%;
+  height: 10%;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+
+.search-bar input[type=text] {
+  background-color: rgba(20, 25, 33);
+  border: 0;
+  height: 3em;
+  width: 90%;
+  border-radius: 1em;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.search-bar i {
+  position: absolute;
+  right: 10%;
+}
+
+/* --=============================== Cofee cards ===================================--*/
+
+.coffee-type {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  min-height: 50px;
+  height: 55px;
+  padding-left: 10px;
+
+  /*hides the scroll bar*/
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/*hides scroll bar on chromium browsers*/
+.coffee-type::-webkit-scrollbar {
+  display: none;
+}
+
+.coffee-type ul {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+
+}
+
+.coffee-type-item {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.active-indicator {
+  color: orange;
+  position: relative;
+  padding-bottom: 12px;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.active-indicator::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: var(--text-color);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-container {
+  overflow: auto;
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.coffee-card {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 0 45%;
+  background-color: var(--secoundary-color);
+}
+
+.coffee-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: var(--secoundary-color);
+  backdrop-filter: blur(4px);
+  opacity: .8;
+  padding: 4px 5px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-size: .8em;
+  z-index: 10;
+}
+
+.rating i {
+  color: #d17842;
+  font-size: 10px;
+  ;
+}
+
+.coffee-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin: 5px 0 2px 0;
+}
+
+.coffee-subheading {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.price span {
+  color: #d17842;
+}
+
+.add-button {
+  background-color: #d17842;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* --=============================== pop-up ===================================--*/
+.pop-up {
+  background-color: var(--secoundary-color);
+  height: calc(100dvh - var(--header-height));
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+}
+
+.active-detailed {
+  display: block
+}
+
+
+.image-container {
+  height: 60%;
+  position: relative;
+  padding: 10px;
+  width: 100%;
+}
+
+.image-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.image-icons {
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 35px;
+  padding-left: 20px;
+}
+
+.image-icons i {
+  text-align: center;
+  display: block;
+  line-height: 2.3rem;
+  font-size: 1.2em;
+  border-radius: 10px;
+  width: 2rem;
+  height: 2rem;
+
+
+  background-color: #2a2a2a;
+  background-color: rgba(30, 32, 34);
+  color: darkgray;
+  border: 0;
+  box-shadow:
+    inset 0 0.0625em 0 0 #3a3a3a,
+    0 0.0625em 0 0 #252525,
+    0 0.125em 0 0 #202020,
+    0 0.25em 0 0 #1c1c1c,
+    0 0.3125em 0 0 #181818,
+    0 0.375em 0 0 #141414,
+    0 0.425em 0 0 #101010,
+    0 0.425em 0.5em 0 #0a0a0a;
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+
+.img-footer {
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgba(34, 22, 24, 0.5);
+  backdrop-filter: blur(30px);
+  height: 30%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  gap: 20px;
+  left: 10px;
+  right: 10px;
+}
+
+#footer-title {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+#footer-sub {
+  color: white;
+  font-size: .9em;
+}
+
+#footer-rating {
+  display: flex;
+  gap: 5px;
+  margin-top: 1em;
+}
+
+.footer-icons {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-template-rows: 50% 50%;
+  gap: 5px 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+.footer-icons span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+
+}
+
+.roasted-button {
+  grid-column: 1 / span 2;
+  text-align: center;
+  background-color: rgba(16, 21, 24);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--text-color);
+}
+
+.coffee-icon {
+  background-color: rgba(16, 21, 24);
+  grid-column: 1;
+}
+
+.milk-icon {
+  grid-column: 2;
+  background-color: rgba(16, 21, 24);
+}
+
+
+.coffee-description {
+  padding-left: 20px;
+  max-height: 30%;
+}
+
+.description-heading {
+  font-family: Zalando Sans;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.size-picker {
+  width: 100%;
+  padding: 20px;
+}
+
+.size-picker ul {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.size-picker ul li {
+  background-color: var(--secoundary-color);
+  width: 33%;
+  text-align: center;
+  border-radius: 10px;
+  height: 35px;
+  line-height: 35px;
+}
+
+.size-picker ul li.active-size {
+  background-color: rgba(202, 118, 67);
+}
+
+
+.final-price {
+  width: 100%;
+  padding: 10px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.final-price button {
+  width: 60%;
+  border-radius: 10px;
+  font-size: 1.2em;
+  background-color: rgba(202, 118, 67);
+  border: none;
+}
+
+.final-price span {
+  width: 40%;
+  font-size: 1.1rem;
+}
+
+/* --=============================== side-bar ===================================--*/
+
+.sidebar {
+  display: none;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 95vw;
+  align-self: center;
+  max-height: 90vh;
+  overflow: auto;
+  background-color: rgb(52, 31, 13);
+  border-radius: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.dropdown {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(62, 37, 15);
+}
+
+.filter-button {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--text-color);
+  padding: 5px;
+  font-size: 1.2em;
+  align-items: center;
+}
+
+.filter-button i {
+  font-size: 1.1em;
+
+}
+
+.dropdown ul {
+  display: none;
+  padding-top: 10px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.dropdown li {
+  border: 1px solid var(--text-color);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.dropdown span i {
+  transition: transform 0.5s ease-in-out;
+}
+
+.dropdown:hover span i {
+  transform: rotate(90deg);
+}
+
+.dropdown:hover ul {
+  display: block;
+}
+
+.dropdown li:hover {
+  background-color: black;
+}
