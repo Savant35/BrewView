@@ -349,6 +349,12 @@ main {
   right: 10px;
 }
 
+.img-footer>div {
+  flex: 1;
+  width: 50%;
+  max-width: 50%;
+}
+
 #footer-title {
   font-size: 1.8em;
   font-weight: bold;

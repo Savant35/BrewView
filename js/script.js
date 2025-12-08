@@ -3,10 +3,11 @@
 const coffeeType = document.querySelectorAll(".coffee-type-item");
 const cardPopup = document.querySelector(".pop-up"); 
 const closePopup = document.getElementById("close-popup");
+const sizes = document.querySelectorAll(".size-item");
 
 //keeps product data that has been loaded already
 let allProducts = [];
-
+let activeProduct = null; // Stores the currently open product
 //--========================================== AppWrite Setup =================================
 const { Client, Databases, Query, Storage } = Appwrite;
 const client = new Client()
@@ -70,7 +71,7 @@ function updatePopupContent(product) {
     if(subEl) subEl.textContent = product.subheading;
 
     const ratingEl = document.querySelector("#footer-rating p");
-    if(ratingEl) ratingEl.textContent = `${product.rating_average} (Reviews)`;
+    if(ratingEl) ratingEl.textContent = `${product.rating_average} (${product.rating_count} Reviews)`;
 
     const descEl = document.querySelector(".description-text");
     if(descEl) descEl.textContent = product.description || "No description available for this item.";
@@ -148,7 +149,7 @@ function handleCoffeeType(event) {
 
     // Logic: Get the category name and fetch data
     const categoryName = clickedItem.innerText.trim();
-    console.log("Filtering by:", categoryName);
+    //console.log("Filtering by:", categoryName);
     
     loadProducts(categoryName);
 }
@@ -158,14 +159,15 @@ function handleCardClick(event) {
     event.preventDefault();
     const clickedCard = event.currentTarget;
 
-    // 1. Get the ID from the clicked card
+    //Get the ID from the clicked card
     const productId = clickedCard.getAttribute("data-id");
 
-    // 2. Find the correct product object in our global array
+    // Find the correct product object in our global array
     const productData = allProducts.find(p => p.$id === productId);
 
-    // 3. Inject data into the popup
+    // Inject data into the popup
     if (productData) {
+        activeProduct = productData;
         updatePopupContent(productData);
     }
 
@@ -188,11 +190,53 @@ function handleClosePopup(event) {
         card.classList.remove("active-card");
     });
 }
+function handleSizeChange(event) {
+    event.preventDefault();
+    const clickedItem = event.currentTarget;
 
-//--========================================== Initialization =================================
+    if (clickedItem.classList.contains("active-size")) return;
 
-// Attach listeners to static elements
+    // 2. Visual: Update the buttons (Remove active from all, add to clicked)
+    sizes.forEach(size => size.classList.remove("active-size"));
+    clickedItem.classList.add("active-size");
+
+    const selectedSize = clickedItem.textContent.trim(); // e.g., "Medium" or "Small"
+
+    //Start with the default base price (Matches "Small")
+    let newPrice = parseFloat(activeProduct.base_price);
+
+    // Check if there is a special price list for this product
+    if (activeProduct.size_prices) {
+        try {
+            // Appwrite sometimes returns this as a JSON string, sometimes as an Object.
+            // This line handles both cases safely.
+            const priceList = typeof activeProduct.size_prices === 'string' 
+                ? JSON.parse(activeProduct.size_prices) 
+                : activeProduct.size_prices;
+
+            // Search the list for the size we just clicked
+            const foundOption = priceList.find(item => item.size === selectedSize);
+            
+            // If we found a specific price for this size, use it!
+            if (foundOption) {
+                newPrice = parseFloat(foundOption.price);
+            }
+        } catch (error) {
+            console.error("Error reading price list:", error);
+        }
+    }
+
+    const priceElement = document.querySelector("#final-price span p:nth-child(2)");
+    if (priceElement) {
+        priceElement.textContent = `$ ${newPrice.toFixed(2)}`;
+    }
+}
+//--========================================== Attach Event listeners =================================
+
 closePopup.addEventListener("click", handleClosePopup);
+sizes.forEach(item => {
+  item.addEventListener("click", handleSizeChange);
+})
 
 coffeeType.forEach(item => {
     item.addEventListener("click", handleCoffeeType);
