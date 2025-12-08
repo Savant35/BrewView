@@ -4,6 +4,7 @@ const coffeeType = document.querySelectorAll(".coffee-type-item");
 const cardPopup = document.querySelector(".pop-up"); 
 const closePopup = document.getElementById("close-popup");
 
+//keeps product data that has been loaded already
 let allProducts = [];
 
 //--========================================== AppWrite Setup =================================
@@ -27,6 +28,8 @@ function generateImageUrl(fileId) {
 function createProductCard(product) {
     const coffeeCard = document.createElement("div");
     coffeeCard.classList.add("coffee-card");
+    //Attach the unique ID to the card so we know which one is clicked
+    coffeeCard.setAttribute("data-id", product.$id);
 
 
     const card = `
@@ -53,6 +56,27 @@ function createProductCard(product) {
 
     coffeeCard.innerHTML = card;
     document.getElementById("card-container").appendChild(coffeeCard);
+}
+
+// 3. Update Popup Content
+function updatePopupContent(product) {
+    const popupImg = document.querySelector("#image-container img");
+    if(popupImg) popupImg.src = generateImageUrl(product.image_id);
+
+    const titleEl = document.getElementById("footer-title");
+    if(titleEl) titleEl.textContent = product.name;
+
+    const subEl = document.getElementById("footer-sub");
+    if(subEl) subEl.textContent = product.subheading;
+
+    const ratingEl = document.querySelector("#footer-rating p");
+    if(ratingEl) ratingEl.textContent = `${product.rating_average} (Reviews)`;
+
+    const descEl = document.querySelector(".description-text");
+    if(descEl) descEl.textContent = product.description || "No description available for this item.";
+
+    const priceEl = document.querySelector("#final-price span p:nth-child(2)");
+    if(priceEl) priceEl.textContent = `$ ${product.base_price}`;
 }
 
 // 3. Attach Click Listeners to Dynamic Cards
@@ -134,15 +158,18 @@ function handleCardClick(event) {
     event.preventDefault();
     const clickedCard = event.currentTarget;
 
-    if (clickedCard.classList.contains("active-card")) {
-        return;
+    // 1. Get the ID from the clicked card
+    const productId = clickedCard.getAttribute("data-id");
+
+    // 2. Find the correct product object in our global array
+    const productData = allProducts.find(p => p.$id === productId);
+
+    // 3. Inject data into the popup
+    if (productData) {
+        updatePopupContent(productData);
     }
 
-    // Remove active class from any other card
-    const allCards = document.querySelectorAll(".coffee-card");
-    allCards.forEach(card => card.classList.remove("active-card"));
-
-    clickedCard.classList.add("active-card"); 
+    // Note: Your HTML uses 'pop-up' ID. Assuming you have CSS to show it.
     cardPopup.classList.add("active-detailed"); 
 }
 
