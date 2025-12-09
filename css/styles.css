@@ -7,6 +7,7 @@
   --secoundary-color: rgba(36, 41, 48);
   --text-color: rgba(226, 207, 181);
   --header-height: 3em;
+  --max-wdith: 1900px;
 
 }
 
@@ -18,6 +19,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: var(--max-wdith);
+  margin: auto;
 }
 
 ul,
@@ -29,12 +32,13 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: "Sour Gummy", "Zalando Sans", "Comic Neue", sans-serif;
-  overflow: auto;
 }
 
 /* --=============================== Header ===================================--*/
 
 header {
+  max-width: var(--max-wdith);
+  margin: auto;
   position: absolute;
   top: 0;
   left: 0;
@@ -90,25 +94,29 @@ main {
 }
 
 .search-bar {
+  position: relative;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10%;
+  height: 3em;
+  width: 90%;
+  margin: auto;
 }
 
 .search-bar input[type=text] {
   background-color: rgba(20, 25, 33);
   border: 0;
   height: 3em;
-  width: 90%;
+  width: 100%;
   border-radius: 1em;
-  padding: 5px;
+  border: 2px solid var(--text-color);
   padding-left: 10px;
 }
 
 .search-bar i {
   position: absolute;
-  right: 10%;
+  right: 1rem;
 }
 
 /* --=============================== Cofee cards ===================================--*/
@@ -170,10 +178,10 @@ main {
 
 .card-container {
   overflow: auto;
-  padding: 15px;
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 
@@ -356,7 +364,7 @@ main {
 }
 
 #footer-title {
-  font-size: 1.8em;
+  font-size: 1.4em;
   font-weight: bold;
 }
 
@@ -537,4 +545,29 @@ main {
 
 .dropdown li:hover {
   background-color: black;
+}
+
+
+
+
+/*--=========================== Responsive media screens =============================================--*/
+
+@media screen and (min-width:800px) {
+  .coffee-card {
+    flex: 0 0 32%;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .coffee-card {
+    flex: 0 0 24%;
+  }
+
+  .pop-up {
+    width: 50%;
+    right: 0;
+    height: 80%;
+    border-radius: 20px;
+  }
+
 }

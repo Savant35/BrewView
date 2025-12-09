@@ -190,6 +190,8 @@ function handleClosePopup(event) {
         card.classList.remove("active-card");
     });
 }
+
+//handles price changes when different size is chosen
 function handleSizeChange(event) {
     event.preventDefault();
     const clickedItem = event.currentTarget;
