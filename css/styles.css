@@ -89,22 +89,22 @@ main {
 
 #body-text {
   font-size: 1.5em;
-  padding-left: 5%;
   height: 10%;
+  padding-left: 5%;
 }
 
 .search-bar {
   position: relative;
-  margin-top: 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 3em;
   width: 90%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-bar input[type=text] {
+  color: var(--text-color);
   background-color: rgba(20, 25, 33);
   border: 0;
   height: 3em;
@@ -118,6 +118,39 @@ main {
   position: absolute;
   right: 1rem;
 }
+
+::placeholder {
+  color: var(--text-color)
+}
+
+.suggestion-box ul {
+  border-top: 1px solid var(--text-color);
+  padding: 15px 10px;
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: repeat(10, auto);
+  grid-auto-flow: column;
+  column-gap: 10px;
+  height: 150px;
+  overflow: auto;
+}
+
+.suggestion-box ul {
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 15px 10px;
+  border-left: 3px solid var(--text-color);
+  border-right: 3px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+.suggestion-box ul li:hover {
+  background-color: var(--text-color);
+  color: black;
+  font-size: 1.2rem;
+}
+
 
 /* --=============================== Cofee cards ===================================--*/
 
@@ -205,8 +238,8 @@ main {
 
 .rating {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -555,6 +588,18 @@ main {
 @media screen and (min-width:800px) {
   .coffee-card {
     flex: 0 0 32%;
+  }
+
+  #body-text {
+    font-size: 2rem;
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 0;
+    height: 5%;
+  }
+
+  #body-text br {
+    display: none;
   }
 }
 

@@ -19,6 +19,23 @@ const databases = new Databases(client);
 
 //--========================================== Helper Functions =================================
 
+
+window.addEventListener("click", function(event) {
+
+    // 1. Check if the popup is actually open right now
+    const isOpen = cardPopup.classList.contains("active-detailed");
+
+    const isInsidePopup = cardPopup.contains(event.target);
+
+    //  Check if the user clicked a Coffee Card (the trigger)
+    const isTrigger = event.target.closest(".coffee-card");
+
+    // If it is Open, AND the click was NOT inside, AND the click was NOT on a trigger
+    if (isOpen && !isInsidePopup && !isTrigger) {
+        handleClosePopup(event);
+    }
+});
+
 // 1. Generate Image URL
 function generateImageUrl(fileId) {
     const bucketId = "693620eb0022a4a6f36d";
